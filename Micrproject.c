@@ -29,6 +29,121 @@ struct user
     int mobile;
 } u;
 
+int main()
+{
+    int result;
+    char buy[15];
+    char cop;
+    int exit = 1, i;
+    int l = 0, p = 0, h = 0, t = 0, num;
+    float tprizee, tprize = 0, tprizeee;
+    struct user u;
+    int menu2, menu;
+
+    printf("\t**** Weclome To GPN Digitals **** \n");
+ 
+    do
+    {
+        printf("\n What would you like to purchase\n Smartphone, Laptop, Headphone, TV : ");
+        scanf("%s", &buy);
+        printf("\nSearching for '%s'.....\n\n", buy);
+        sleep(1);
+        if (strcmpi(buy, "Laptop") == 0)
+        {
+            printf("\rShowing Top Laptop Brands\n");
+            l = laptop();
+            printf("\nTo Confirm your selection enter-[4] and Press [3]-to return in the main menu ! : ");
+            scanf("%d", &menu);
+            if (menu == 3)
+                laptop();
+            else
+                printf("Item added to the Cart...");
+        }
+        else if (strcmpi(buy, "Smartphone") == 0)
+        {
+            p = phone();
+             printf("Item added to the Cart...");
+        }
+        else if (strcmpi(buy, "Headphone") == 0)
+        {
+            h = Headphone();
+        
+            printf("\nTo Confirm your selection enter-[4] and Press [3]-to return in the main menu !\n");
+            scanf("%d", &menu2);
+            if (menu2 == 3)
+                Headphone();
+        }
+        else if (strcmpi(buy, "TV") == 0)
+        {
+            t = television();
+             printf("Item added to the Cart...");
+        }
+        else
+        {
+            printf("Sorry Were are enable to provide you with '%s'....\n", buy);
+        }
+
+        tprize = l + p + h + t;
+        tprizee = tprize * 0.10;
+        tprizeee = tprize - tprizee;
+        printf("\nTo continue Shopping Enter [1] and If you want to exit Enter [0]\n");
+        scanf("%d", &exit);
+
+    } while (exit == 1 || exit == 9);
+    for (i = 0; i <= 100; i += 25)
+    {
+        printf("\rCalculating Items and Cost for the products %d%%.....", i);
+        fflush(stdout); 
+		// Flush the output buffer to ensure the text is displayed immediately
+        usleep(300000);
+        if (i == 75)
+            usleep(800000);
+    }
+    
+//Other thing like Name , coupan code are taken here
+printf("\n\n*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*\n");
+    printf("\nFor next Step Enter \n Your Name : ");
+    scanf("%s", &u.name);
+
+    printf("\nDo you have a coupon code\n[Y] - For Yes and [N] - For NO :\n");
+    scanf(" %c", &cop);
+
+    if (cop == 'y')
+    {
+        printf("\nEnter coupn Code :  ");
+        scanf("%d", &num);
+
+        if (num == 007)
+        {
+           
+           sleep(1);
+             printf("\n %s Your Grand total bill is : \n\n Rs %d.0/-\n Rs %d.0/-\n Rs %d.0/-\n+Rs %d.0/-\n_________\nRs %2.f\n-10%%Coupon Discount\n____________\n Rs %.2f/-\n",u.name,l,p,h,t,tprize,tprizeee);
+              printf("\nYour Discouted bill is Rs %.2f /-\n", tprizeee);
+
+        }
+        else
+        {
+        	sleep(1);
+            printf("\nThis coupan code is invalid !!\n");
+            sleep(1);
+            printf("Now the program will be redirected to the main menu again...");
+            sleep(1);
+            main();
+        
+        
+        }
+    }
+    else
+    {
+    	
+        printf("\n %s Your Grand total bill is : \n Rs %d.0/-\n Rs %d.0/-\n Rs %d.0/-\n+Rs %d.0/-\n____________\n Rs %.2f/-\n",u.name,l,p,h,t,tprize);
+}
+    printf("\n\n  *** Thanks for Visiting Hope you Visit again ! Mr/Mrs : %s  ***", u.name);
+	printf("\n\n*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+**+*+*+*+*+*+*+\n");
+    getch();
+    return 0;
+}
+
 // This function is for laptop
 
 int laptop()
@@ -40,7 +155,7 @@ int laptop()
     printf("press the given code value to procced\n~ASUS-[1]\n~HP-[2]\n~DELL-[3]\n~LENOVO-[4]\n");
     scanf("%d", &choice);
 
-    usleep(500000);
+    
 
     switch (choice)
     {
@@ -117,25 +232,25 @@ int hp(int Hc)
 {
     if (Hc == 1)
     {
-        printf("\nHP 15s, Ryzen 5-5500U, 16GB RAM/512GB SSD 15.6-inches(39.6 cm) FHD, Micro-Edge, Anti-Glare Laptop/Alexa Built-in\n");
+        printf("\nHP 15s, Ryzen 5-5500U, 16GB RAM/512GB SSD 15.6-inches(39.6 cm) FHD\n, Micro-Edge, Anti-Glare Laptop/Alexa Built-in\n");
         printf("Windows 11 /AMD Radeon Graphics/Dual Speakers/MS Office 2021/1.69 Kg\n\nPrice(Including all inclusive taxes)- Rs43,310 /-Only\n");
         return 43310;
     }
     else if (Hc == 2)
     {
-        printf("\nHP Pavilion 14 12th Gen Intel Core i7 16GB SDRAM/1TB SSD 14 inch(35.6cm) FHD,IPS,Micro-Edge Display/Intel Iris Xe\n");
+        printf("\nHP Pavilion 14 12th Gen Intel Core i7 16GB SDRAM/1TB SSD 14 inch(35.6cm) FHD\n,IPS,Micro-Edge Display/Intel Iris Xe\n");
         printf("Graphics/B&O/Win 11/Alexa Built-in/Backlit KB/FPR/MSO 2021/Natural Silver\n\nPrice(Including all inclusive taxes)- Rs 76,990/-Only\n");
         return 76990;
     }
     else if (Hc == 4)
     {
-        printf("\nHP Victus Gaming Laptop, AMD Ryzen 7 7840HS AI powered, 6GB RTX 3050 GPU, 16.1-inch (40.9 cm), 95W TGP, FHD, IPS, 144Hz");
+        printf("\nHP Victus Gaming Laptop, AMD Ryzen 7 7840HS AI powered\n 6GB RTX 3050 GPU, 16.1-inch (40.9 cm), 95W TGP, FHD, IPS, 144Hz");
         printf("16GB DDR5, 1TB SSD, 300 nits, RGB Backlit KB, B&O (MSO, Blue, 2.29 kg)\n\nPrice(Including all inclusive taxes)- Rs 82,490/-Only\n");
         return 82490;
     }
     else
     {
-        printf("\nHP OMEN Gaming Laptop, AMD Ryzen 7 6800H, 8GB RTX 3070Ti GPU, 16.1-inch (40.9 cm), QHD, IPS, 165Hz, 16GB DDR5\n");
+        printf("\nHP OMEN Gaming Laptop, AMD Ryzen 7 6800H, 8GB RTX 3070Ti GPU\n, 16.1-inch (40.9 cm), QHD, IPS, 165Hz, 16GB DDR5\n");
         printf("1TB SSD, 300 nits, RGB Backlit KB, B&O, Dual Speakers (MSO, Silver, 2.37 kg)\n\nPrice(Including all inclusive taxes)- Rs 1,05,990/-Only\n");
         return 105990;
     }
@@ -167,31 +282,31 @@ int lenovo(int Lc)
 {
     if (Lc == 1)
     {
-        printf("\nLenovo IdeaPad Slim 3 Intel Core i5-12450H 15 (39.6cm) FHD IPS 300 Nits Thin & Light Laptop");
+        printf("\nLenovo IdeaPad Slim 3 Intel Core i5-12450H 15 \n(39.6cm) FHD IPS 300 Nits Thin & Light Laptop");
         printf("(16GB/512GB SSD/Win 11/Office 2021/Alexa Built-in/3 Month Game Pass/Arctic Grey/1.62Kg)\n\nPrice(Including all inclusive taxes)- Rs 54,540/-Only\n");
         return 54540;
     }
     else if (Lc == 2)
     {
-        printf("\nLenovo Yoga Slim 6 Intel Evo Core i5 1240P 14(35.5cm) 2.2K 300Nit Laptop");
+        printf("\nLenovo Yoga Slim 6 Intel Evo Core i5 1240P \n14(35.5cm) 2.2K 300Nit Laptop");
         printf("(16GB/512GB SSD/60Hz Refresh/Win 11/Office 2021/Backlit KB/1Yr Warranty/Alexa/3 Month Game Pass/Storm Grey/1.35Kg\n\nPrice(Including all inclusive taxes)- Rs 64,990/-Only\n");
         return 64990;
     }
     else if (Lc == 3)
     {
-        printf("\nLenovo IdeaPad Gaming 3 Intel Core i5-11320H 15.6 (39.62cm) FHD IPS 60Hz Gaming Laptop (8GB/512GB SSD)\n");
+        printf("\nLenovo IdeaPad Gaming 3 Intel Core i5-11320H \n15.6 (39.62cm) FHD IPS 60Hz Gaming Laptop (8GB/512GB SSD)\n");
         printf("Windows 11/NVIDIA RTX 2050 4GB/Alexa/3 Month Game Pass/Shadow Black/2.25Kg)\n\nPrice(Including all inclusive taxes)- Rs 48,990/-Only\n");
         return 48990;
     }
     else if (Lc == 4)
     {
-        printf("Lenovo Legion 5 Pro AMD Ryzen 7 5800H40cm 500Nits QHD Gaming Laptop(16GB/1TB SSD/RTX 3060 6GB GDDR6\n");
+        printf("Lenovo Legion 5 Pro AMD Ryzen 7 5800H40cm 500Nits \nQHD Gaming Laptop(16GB/1TB SSD/RTX 3060 6GB GDDR6\n");
         printf("Graphics/165Hz/Windows 11/Office 2021/RGB Backlit/3mnth Xbox Game Pass/Storm Grey\n\nPrice(Including all inclusive taxes)- Rs 91,190/-Only\n");
         return 91190;
     }
     else
     {
-        printf("Lnenovo LOQ 2024 Intel Core i5-12450HX 15.6 (39.6cm) 144Hz 300Nits FHD Gaming Laptop (8GB/512GB SSD");
+        printf("Lnenovo LOQ 2024 Intel Core i5-12450HX \n15.6 (39.6cm) 144Hz 300Nits FHD Gaming Laptop (8GB/512GB SSD");
         printf("Win 11/Intel Arc A530M 4GB Graphics/100% sRGB/3 Month Game Pass/Luna Grey/2.4Kg)\n\nPrice(Including all inclusive taxes)- Rs 59,990/-Only\n");
         return 59990;
     }
@@ -226,7 +341,7 @@ int samsung()
     printf("\n[1]For Samsang Galaxy S24 Ultra (Ram 12gb | Stroge 1tb )\nPrice(Including all inclusive taxes)- 158,900 /-only  \n\n[2] For Samsung Galaxy S23 Ultra (Ram 12gb | Stroge 521gb )\nPrice(Including all inclusive taxes)- 119,900 /-only \n\n[3]For Samsung Galaxy S21 Fe 5g (Ram 8gb | Stroge 256gb )\nPrice(Including all inclusive taxes)- 33,900 /-only \n\n[4]For Samsung M34 (Ram 8gb | Stroge 128gb )\nPrice(Including all inclusive taxes)- 17,900 /-only  \n");
     scanf("%d", &Sc);
 
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : ");
     scanf("%d", &sel);
     if (sel == 3)
         phone();
@@ -249,7 +364,7 @@ int vivo()
     printf("\n[1]For Vivo X100 Pro (Ram 16gb | Stroge 512gb )\nPrice(Including all inclusive taxes)- 89,900 /-only  \n\n[2]For Vivo V30 Pro (Ram 8gb | Stroge 256gb )\nPrice(Including all inclusive taxes)- 41,900 /-only \n\n[3]For Vivo Y200e 5g (Ram 8gb | Stroge 128gb )\nPrice(Including all inclusive taxes)- 19,900 /-only  \n\n[4]For Vivo T2 5g (Ram 8gb | Stroge 128gb )\nPrice(Including all inclusive taxes)- 16,900 /-only \n");
     scanf("%d", &Vc);
 
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] :");
     scanf("%d", &sel);
     if (sel == 3)
         phone();
@@ -271,7 +386,7 @@ int xiomi()
     printf("\n[1]For Redmi Note 13 Pro (Ram 12gb | Stroge 512gb )\nPrice(Including all inclusive taxes)- 35,000 /-only \n\n[2]For Xiaomi 13 Pro (Ram 12gb | Stroge 256gb )\nPrice(Including all inclusive taxes)- 75,000 /-only  \n\n[3]For Xiaomi Redmi Note 11 (Ram 6gb | Stroge 128gb )\nPrice(Including all inclusive taxes)- 11,900 /-only \n\n[4]For Xiaomi 14 (Ram 12gb | Stroge 512gb )\nPrice(Including all inclusive taxes)- 69,000 /-only \n");
     scanf("%d", &Xc);
 
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : ");
     scanf("%d", &sel);
     if (sel == 3)
         phone();
@@ -295,7 +410,7 @@ int phone()
     printf("press the given code value to procced\n[1]-For APPLE\n[2]-For SAMSUNG\n[3]-For Vivo\n[4]-For Xiomi\n");
     scanf("%d", &choice);
 
-    usleep(500000);
+    
 
     switch (choice)
     {
@@ -393,7 +508,7 @@ int Headphone()
     printf("\rShowing Top Headphones brands\n");
     printf("press the given code value to procced\n[1]-For Boat\n[2]-For JBL\n[3]-For Sony\n[4]-For MSI\n");
     scanf("%d", &choice);
-    usleep(500000);
+    
     switch (choice)
     {
     case 1:
@@ -405,7 +520,7 @@ int Headphone()
         break;
     case 2:
         printf("We Have 3 Models from the brand JBL\n");
-        printf("[1]JBL Tune 770NC\n[2]JBL Tune 520 BT\n[3]JBL Tune 230NC");
+        printf("[1]JBL Tune 770NC\n[2]JBL Tune 520 BT\n[3]JBL Tune 230NC\n");
         scanf("%d", &Jc);
         b = jbl(Jc);
         return b;
@@ -435,7 +550,7 @@ int sonny()
     int Sc, sel;
     printf("[1]Sony Bravia 108 cm (43 inches) 4K Ultra HD\nPrice(Including all inclusive taxes)- Rs 37,999/-Only\n\n[2]Sony Bravia 164 cm (65 inches) 4K Ultra HD Smart\nPrice(Including all inclusive taxes)- Rs 97,499/-Only\n\n");
     scanf("%d", &Sc);
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]\n");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : \n");
     scanf("%d", &sel);
     if (sel == 3)
         television();
@@ -453,7 +568,7 @@ int lg()
     int Lc, sel;
     printf("[1]LG 80 cm (32 inches) HD Ready Smart LED TV\nPrice(Including all inclusive taxes)- Rs 13,900/-Only\n\n[2]LG 139 cm (55 inches) 4K Ultra HD Smart LED TV\nPrice(Including all inclusive taxes)- Rs 44,000/-Only\n\n[3]LG 108 cm (43 inches) 4K Ultra HD Smart LED TV\nPrice(Including all inclusive taxes)- Rs 30,100/-Only\n\n");
     scanf("%d", &Lc);
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]\n");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : \n");
     scanf("%d", &sel);
     if (sel == 3)
     {
@@ -476,7 +591,7 @@ int benq()
     printf("[1]BenQ EW3880R 38' (96 cm) WQHD+ Ultrawide 2300R Curved Monitor\nIPS, Bezel-Less, HDR, 3840 x 1600 Pixels\nPrice(Including all inclusive taxes)- Rs 67,999/-Only\n\n[2]BenQ MOBIUZ EX3210U 4K UHD 32'(81cm) 3840x2160 Pixels VESA DisplayHDR600 IPS Gaming Monito\nPrice(Including all inclusive taxes)- Rs 45,329/-Only\n\n");
     printf("[3]BenQ PD3205U 31.5'(80.01 cm) LCD 3840 x 2160 Pixels 4K Monitor\nPrice(Including all inclusive taxes)- Rs 24,000/-Only\n\n");
     scanf("%d", &Bc);
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]\n");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : \n");
     scanf("%d", &sel);
     if (sel == 3)
     {
@@ -498,7 +613,7 @@ int samsunng()
     int Sac, sel;
     printf("[1]Samsung 80 cm (32 inches) HD Ready Smart LED TV\nPrice(Including all inclusive taxes)- Rs 14,000/-Only\n\n[2]Samsung 138 cm (55 Inches) Crystal Vision 4K Ultra HD Smart LED TV \nPrice(Including all inclusive taxes)- Rs 28,000/-Only\n\n[3]Samsung 108 cm (43 inches) Full HD Smart LED TV\nPrice(Including all inclusive taxes)- Rs 22,000/-Only\n\n");
     scanf("%d", &Sac);
-    printf("TO Confirm your selection enter [4] to return to the main menu enter [3]\n");
+    printf("TO Confirm your selection enter [4] to return to the main menu enter [3] : \n");
     scanf("%d", &sel);
     if (sel == 3)
     {
@@ -527,7 +642,7 @@ int television()
     printf("press the given code value to procced\n[1]-For SONY\n[2]-For BenQ\n[3]-For LG\n[4]-For Samsung\n");
     scanf("%d", &choice);
 
-    usleep(500000);
+    
     switch (choice)
     {
     case 1:
@@ -553,104 +668,7 @@ int television()
     return 0;
 }
 
-int main()
-{
-    int result;
-    char buy[15];
-    char cop;
-    int exit = 1, i;
-    int l = 0, p = 0, h = 0, t = 0, num;
-    float tprizee, tprize = 0, tprizeee;
-    struct user u;
-    int menu2, menu;
 
-    printf("\t**** Weclome To GPN Digitals **** \n");
-    usleep(50000);
-    do
-    {
-        printf("\n What would you like to purchase\n Smartphone, Laptop, Headphone, TV : ");
-        scanf("%s", &buy);
-        printf("\nSearching for '%s'.....\n\n", buy);
-        sleep(1);
-        if (strcmpi(buy, "Laptop") == 0)
-        {
-            printf("\rShowing Top Laptop Brands\n");
-            l = laptop();
-            printf("\nTo Confirm your selection enter-[4] and Press [3]-to return in the main menu !");
-            scanf("%d", &menu);
-            if (menu == 3)
-                laptop();
-            else
-                printf("Item added to the Cart...");
-        }
-        else if (strcmpi(buy, "Smartphone") == 0)
-        {
-            p = phone();
-        }
-        else if (strcmpi(buy, "Headphone") == 0)
-        {
-            h = Headphone();
-
-            printf("\nTo Confirm your selection enter-[4] and Press [3]-to return in the main menu !\n");
-            scanf("%d", &menu2);
-            if (menu2 == 3)
-                Headphone();
-        }
-        else if (strcmpi(buy, "TV") == 0)
-        {
-            t = television();
-        }
-        else
-        {
-            printf("Sorry Were are enable to provide you with '%s'....\n", buy);
-        }
-
-        tprize = l + p + h + t;
-        tprizee = tprize * 0.10;
-        tprizeee = tprize - tprizee;
-        printf("\nTo continue Shopping Enter [1] and If you want to exit Enter [0]\n");
-        scanf("%d", &exit);
-
-    } while (exit == 1 || exit == 9);
-    for (i = 0; i <= 100; i += 25)
-    {
-        printf("\rCalculating Items and Cost for the products %d%%.....", i);
-        fflush(stdout); 
-		// Flush the output buffer to ensure the text is displayed immediately
-        usleep(300000);
-        if (i == 75)
-            usleep(800000);
-    }
-    
-//Other thing like Name , coupan code are taken here
-
-    printf("\nFor next Step Enter \n Your Name : ");
-    scanf("%s", &u.name);
-
-    printf("Do you have a coupon code\n[Y] - For Yes and [N] - For NO :\n");
-    scanf(" %c", &cop);
-
-    if (cop == 'y')
-    {
-        printf("\nEnter coupn Code :  ");
-        scanf("%d", &num);
-
-        if (num == 007)
-        {
-            printf("Your total bill was Rs %.2f /- \n ", tprize);
-            printf("Your Discouted bill after 10%% discount is Rs %.2f /-\n", tprizeee);
-        }
-        else
-            printf("This coupan code is invalid !!");
-    }
-    else
-        printf("\n %s Your total bill is Rs %.2f /- \n", u.name, tprize);
-
-    printf("\n  *** Thanks for Visiting Hope you Visit again Mr/Mrs : %s  ***", u.name);
-
-    getch();
-    return 0;
-}
 // Made By Gitanshu Hatwar - 2307029
 // Mayank Patel - 2307044
 // Project Name -  Electronics Retail Platform/Center"
